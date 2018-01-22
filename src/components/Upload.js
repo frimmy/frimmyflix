@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import Nav from './Nav';
 
 
 export class Upload extends Component {
+
+	uploadWidget = () => {
+		window.cloudinary.openUploadWidget(
+		{
+			cloud_name: 'frimmy',
+			upload_preset: 'frimmy_flix',
+			tags: ['miniflix'],
+			sources: ['local', 'url', 'google_photos', 'facebook', 'image_search', 'instagram']
+		},
+		function (err, result) {
+			console.log("This is the result of the last upload", result);
+		});
+	}
 	
 	render() {
 		return (
@@ -14,7 +27,7 @@ export class Upload extends Component {
 
 				<div className="col-sm-12">
 					<div className="jumbotron text-center">
-						<button className="btn btn-lg btn-info">Upload Video</button>
+						<button onClick={this.uploadWidget} className="btn btn-lg btn-info">Upload Video</button>
 					</div>
 				</div>
 			</div>
